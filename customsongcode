@@ -21,6 +21,11 @@ live_loop :clipped do
   end
   sample clip, amp: 1.25
   sleep cliplength
+  use_synth :piano
+  play :a4, sustain: 1
+  play :e4, sustain: 1
+  play :cs4, sustain: 1
+  sleep 1
 end
 
 sleep 4
