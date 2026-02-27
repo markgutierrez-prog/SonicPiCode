@@ -1,51 +1,64 @@
 use_bpm 60
-clip = "C:/Users/mg730/Documents/Audacity/DeathByGlamour.mp3"
-cliplength = sample_duration "C:/Users/mg730/Documents/Audacity/DeathByGlamour.mp3"
+clip = "C:/Users/mark_gutierrez/Documents/Audacity/DeathByGlamour-4Measures.wav"
+cliplength = sample_duration "C:/Users/mark_gutierrez/Documents/Audacity/DeathByGlamour-4Measures.wav"
+
 live_loop :clipped do
-  sample clip
+  stop if tick == 2
+  if tick == 2
+    #end thingy
+    play :fs4
+    sleep 0.2
+    play :g4
+    sleep 0.2
+    play :fs4
+    sleep 0.2
+    play :b4
+    sleep 0.2
+    play :a4
+    sleep 0.2
+    play :e4
+    sleep 0.2
+    play :d4
+    sleep 0.2
+    play :c4
+    sleep 0.2
+    play :a3
+    sleep 0.2
+    play :g3
+    sleep 0.2
+    play :e3
+    sleep 0.2
+  end
+  sample clip, amp: 1.25
   sleep cliplength
 end
 sleep cliplength / 3
 live_loop :layera do
-  sample :sn_dolf, amp: 0.5
-  sleep 0.5
-  sample :sn_dolf, amp: 0.5
-  sleep 0.5
-  sample :sn_dolf, amp: 0.5
+  sample :bd_haus, amp: 0.7
   sleep 0.5
 end
 sleep cliplength / 3
 live_loop :layerb do
   sample :bd_fat
-  sleep 1
-  sample :bd_fat
   sleep 0.4
-  sample :bd_fat
-  sleep 0.4
-  sample :bd_fat
-  sleep 0.5
-  sample :bd_fat
-  sleep 0.2
-  sample :bd_fat
-  sleep 1
 end
 sleep cliplength / 3
 live_loop :layerc do
-  sample :loop_amen, rate: 0.7
-  sleep sample_duration(:loop_amen, rate: 0.7)
-end
-live_loop :layerd do
-  use_synth :tb303
-  play 38, release: 0.2, amp: 0.6, cutoff: 80, res: 0.3
-  sleep 0.5
-  play 38, release: 0.1, amp: 0.5, cutoff: 70, res: 0.3
-  sleep 0.25
-  play 41, release: 0.2, amp: 0.6, cutoff: 85, res: 0.3
-  sleep 0.25
-  play 43, release: 0.3, amp: 0.7, cutoff: 90, res: 0.3
-  sleep 0.5
-  play 41, release: 0.15, amp: 0.5, cutoff: 80, res: 0.3
-  sleep 0.5
-  play 38, release: 0.2, amp: 0.6, cutoff: 75, res: 0.3
-  sleep 0.5
+  use_synth :piano
+  play :fs4, sustain: 2
+  play :cs4, sustain: 2
+  play :a3, sustain: 2
+  sleep 2
+  play :g4, sustain: 2
+  play :d4, sustain: 2
+  play :b3, sustain: 2
+  sleep 2
+  play :a4, sustain: 2
+  play :e4, sustain: 2
+  play :cs4, sustain: 2
+  sleep 2
+  play :g4, sustain: 2
+  play :d4, sustain: 2
+  play :b3, sustain: 2
+  sleep 2
 end
