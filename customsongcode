@@ -1,49 +1,38 @@
 use_bpm 60
 clip = "C:/Users/mark_gutierrez/Documents/Audacity/DeathByGlamour-4Measures.wav"
 cliplength = sample_duration "C:/Users/mark_gutierrez/Documents/Audacity/DeathByGlamour-4Measures.wav"
+set :done, false
 
 live_loop :clipped do
-  stop if tick == 2
   if tick == 2
-    #end thingy
-    play :fs4
-    sleep 0.2
-    play :g4
-    sleep 0.2
-    play :fs4
-    sleep 0.2
-    play :b4
-    sleep 0.2
-    play :a4
-    sleep 0.2
-    play :e4
-    sleep 0.2
-    play :d4
-    sleep 0.2
-    play :c4
-    sleep 0.2
-    play :a3
-    sleep 0.2
-    play :g3
-    sleep 0.2
-    play :e3
-    sleep 0.2
+    play :fs4; sleep 0.2
+    play :g4;  sleep 0.2
+    play :fs4; sleep 0.2
+    play :b4;  sleep 0.2
+    play :a4;  sleep 0.2
+    play :e4;  sleep 0.2
+    play :d4;  sleep 0.2
+    play :c4;  sleep 0.2
+    play :a3;  sleep 0.2
+    play :g3;  sleep 0.2
+    play :e3;  sleep 0.2
+    set :done, true
+    stop
   end
   sample clip, amp: 1.25
   sleep cliplength
 end
-sleep cliplength / 3
+
+sleep 4
 live_loop :layera do
+  stop if get(:done)
   sample :bd_haus, amp: 0.7
   sleep 0.5
 end
-sleep cliplength / 3
+
+sleep 2
 live_loop :layerb do
-  sample :bd_fat
-  sleep 0.4
-end
-sleep cliplength / 3
-live_loop :layerc do
+  stop if get(:done)
   use_synth :piano
   play :fs4, sustain: 2
   play :cs4, sustain: 2
