@@ -1,8 +1,12 @@
 use_bpm 60
-clip = "C:/Users/mark_gutierrez/Documents/Audacity/DeathByGlamour-4Measures.wav"
-cliplength = sample_duration "C:/Users/mark_gutierrez/Documents/Audacity/DeathByGlamour-4Measures.wav"
+clip = "C:/Users/mg730/Documents/Audacity/DeathByGlamour.mp3"
+cliplength = sample_duration "C:/Users/mg730/Documents/Audacity/DeathByGlamour.mp3"
 set :done, false
-
+define :checkruntime do
+  if get(:done) == true
+    stop
+  end
+end
 live_loop :clipped do
   if tick == 2
     play :fs4; sleep 0.2
@@ -19,8 +23,23 @@ live_loop :clipped do
     set :done, true
     stop
   end
-  sample clip, amp: 1.25
+  if tick == 1
+    sample clip, start: 0, finish: 0.25, amp: 1.5
+    sleep cliplength/4
+    sample clip, start: 0, finish: 0.50, amp: 1.2
+    sleep cliplength/4
+    sample clip, start: 0, finish: 0.75, amp: 0.9
+    sleep cliplength/4
+    sample clip, start: 0, finish: 1, amp: 0.6
+    sleep cliplength/4
+  end
+  sample clip
   sleep cliplength
+end
+
+sleep cliplength
+live_loop :pianoRiff do
+  checkruntime
   use_synth :piano
   play :a4, sustain: 1
   play :e4, sustain: 1
@@ -30,14 +49,14 @@ end
 
 sleep 4
 live_loop :layera do
-  stop if get(:done)
+  checkruntime
   sample :bd_haus, amp: 0.7
   sleep 0.5
 end
 
 sleep 2
 live_loop :layerb do
-  stop if get(:done)
+  checkruntime
   use_synth :piano
   play :fs4, sustain: 2
   play :cs4, sustain: 2
